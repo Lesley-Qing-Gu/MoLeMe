@@ -170,10 +170,11 @@ const App: React.FC = () => {
       )}
 
       {/* Floating Panic Button */}
+      {/* 修复点：提升 z-index 到 150，高于 PanicOverlay 的 100，确保悬停状态不丢失 */}
       <button 
         onMouseEnter={() => setIsPanic(true)}
         onMouseLeave={() => setIsPanic(false)}
-        className="fixed bottom-16 right-6 w-14 h-14 rounded-full bg-red-600 text-white flex items-center justify-center shadow-xl hover:scale-110 transition-transform z-50 animate-pulse border-4 border-white"
+        className="fixed bottom-16 right-6 w-14 h-14 rounded-full bg-red-600 text-white flex items-center justify-center shadow-xl hover:scale-110 transition-transform z-[150] animate-pulse border-4 border-white"
       >
         <span className="text-xs font-bold text-center leading-none">老板<br/>来了</span>
       </button>
@@ -227,7 +228,7 @@ const DesktopIcon: React.FC<{ icon: React.ReactNode, label: string, onClick: () 
     <div className="text-4xl filter grayscale group-hover:grayscale-0 transition-all flex items-center justify-center">
       {typeof icon === 'string' ? icon : icon}
     </div>
-    <span className="text-white text-[10px] text-center font-bold px-1 group-hover:bg-blue-800 whitespace-nowrap">
+    <span className="text-white text-[10px] text-center font-bold px-1 group-hover:bg-blue-800 whitespace-nowrap overflow-hidden">
       {label}
     </span>
   </div>
